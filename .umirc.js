@@ -31,7 +31,9 @@ export default defineConfig({
 			},
 		});
 	},
+	// locale: { antd: true },
 	// 路由控制
+	// 暂缺权限路由控制
 	routes: [
 		{
 			exact: false,
@@ -44,7 +46,9 @@ export default defineConfig({
 					component: '@/pages/Test',
 					title: '测试页',
 				},
+				{ component: '@/pages/404' },
 			],
 		},
+		{ component: '@/pages/404' },
 	],
 });
