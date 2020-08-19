@@ -4,6 +4,10 @@ export default defineConfig({
 	dynamicImport: {
 		loading: '@/components/Loading',
 	},
+	ssr: {},
+	exportStatic: {
+		htmlSuffix: true,
+	},
 	hash: true,
 	nodeModulesTransform: {
 		type: 'none',
@@ -31,24 +35,56 @@ export default defineConfig({
 			},
 		});
 	},
-	// locale: { antd: true },
+	// metas
+	metas: [
+		{
+			name: 'keywords',
+			content: 'umi, umijs',
+		},
+		{
+			name: 'description',
+			content: '🍙 插件化的企业级前端应用框架。',
+		},
+	],
+	locale: {
+		antd: true,
+		title: true,
+		// default: 'zh-CN',
+		baseSeparator: '-',
+		baseNavigator: false,
+	},
 	// 路由控制
 	// 暂缺权限路由控制
+	title: 'site.title',
 	routes: [
 		{
-			exact: false,
 			path: '/',
 			component: '@/layout/index',
 			routes: [
-				{ path: '/', component: '@/pages/index', title: '首页' },
+				{ path: '/', component: '@/pages/index', title: 'index.title' },
 				{
-					path: 'test',
-					component: '@/pages/Test',
-					title: '测试页',
+					path: '/index',
+					component: '@/pages/index',
+					title: 'index.title',
 				},
-				{ component: '@/pages/404' },
+				{
+					path: '/index-en',
+					component: '@/pages/index',
+					title: 'index.title',
+				},
+				{
+					path: '/test',
+					component: '@/pages/Test',
+					title: 'test.title',
+				},
+				{
+					path: '/test-en',
+					component: '@/pages/Test',
+					title: 'test.title',
+				},
+				{ component: '@/pages/404', title: '404.title' },
 			],
 		},
-		{ component: '@/pages/404' },
+		{ component: '@/pages/404', title: '404.title' },
 	],
 });

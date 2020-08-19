@@ -6,27 +6,7 @@ export default {
 			name: 'johnny',
 		},
 		user: {},
-	},
-	reducers: {
-		save_users(state, { payload: { users = [] } }) {
-			return {
-				...state,
-				users,
-			};
-		},
-		save(state, { payload }) {
-			console.log(payload);
-			return {
-				...state,
-				user: payload,
-			};
-		},
-		logout(state) {
-			return {
-				...state,
-				user: {},
-			};
-		},
+		lang: 'zh-CN',
 	},
 	effects: {
 		*login({ payload }, { call, put }) {
@@ -48,6 +28,27 @@ export default {
 		*logout(_, { put }) {
 			yield {
 				type: 'logout',
+			};
+		},
+	},
+	reducers: {
+		save_users(state, { payload: { users = [] } }) {
+			return {
+				...state,
+				users,
+			};
+		},
+		save(state, { payload }) {
+			console.log(payload);
+			return {
+				...state,
+				user: payload,
+			};
+		},
+		logout(state) {
+			return {
+				...state,
+				user: {},
 			};
 		},
 	},

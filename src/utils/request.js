@@ -5,7 +5,8 @@
 import { extend } from 'umi-request';
 import { notification } from 'antd';
 // import { history } from 'umi';
-import { API_URL } from '@/globalConfig';
+// import { API_URL } from '@/globalConfig';
+const API_URL = '';
 
 let requestToken;
 
