@@ -9,7 +9,6 @@ import Navbar from '@/components/Navbar';
 const { Option } = Select;
 
 const LocalBtn = props => {
-	// const lang = getLocale();
 	const { lang } = props;
 	const location = useLocation();
 	console.log('---localBtns:', lang, props);
@@ -17,9 +16,38 @@ const LocalBtn = props => {
 	const handleChange = value => {
 		setLocale(value || 'zh-CN', true);
 		// 更新当前网页
-		updateLangCurrentPage(value);
+		// updateLangCurrentPage(value);
+		updatePage(value);
 	};
 
+	// ---- 非SSR
+	const updatePage = lang => {
+		const { pathname } = location;
+		const pathArr = pathname.split('/');
+		const currentPath = pathArr[pathArr.length - 1];
+		const isEn = currentPath.includes('-en');
+		let newHref = '';
+		// 切换到英文网页
+		if (lang === 'en-US') {
+			if (!isEn) {
+				if (pathname === '/') {
+					newHref = '/index-en';
+				} else {
+					pathArr[pathArr.length - 1] = currentPath + '-en';
+					newHref = pathArr.join('/');
+				}
+			}
+		} else {
+			// 切换到中文网页
+			pathArr[pathArr.length - 1] = currentPath.replace('-en', '');
+			newHref = pathArr.join('/');
+		}
+		if (window.location) {
+			window.location.href = newHref;
+		}
+	};
+
+	// --------- SSR --------------------
 	// 切换语言后，相应的网页跳转到相应的语言
 	const updateLangCurrentPage = lang => {
 		const { pathname } = location;
@@ -81,15 +109,18 @@ class BasicLayout extends Component {
 		lang: 'zh-CN',
 	};
 	componentDidMount() {
-		this.updateLangByHtmlName();
+		// this.updateLangByHtmlName();
+		this.updateLangByHtmlName(false);
 	}
 
 	// 根据html网页的名字更新当前浏览器语言
-	updateLangByHtmlName = () => {
+	updateLangByHtmlName = isSSR => {
 		const { pathname } = location;
 		const pathArr = pathname.split('/');
 		const currentPath = pathArr[pathArr.length - 1];
-		const isEn = currentPath.includes('-en.html');
+		const isEn = isSSR
+			? currentPath.includes('-en.html')
+			: currentPath.includes('-en');
 		if (isEn) {
 			setLocale('en-US', false);
 			this.setState({

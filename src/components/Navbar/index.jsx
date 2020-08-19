@@ -2,24 +2,45 @@ import React from 'react';
 import { NavLink, getLocale } from 'umi';
 import styles from './index.less';
 
+// const links = [
+// 	{
+// 		path: '/index.html',
+// 		name: '首页',
+// 	},
+// 	{
+// 		path: '/test.html',
+// 		name: '测试页',
+// 	},
+// ];
+
+// const enLinks = [
+// 	{
+// 		path: '/index-en.html',
+// 		name: 'Home Page',
+// 	},
+// 	{
+// 		path: '/test-en.html',
+// 		name: 'Test Page',
+// 	},
+// ];
 const links = [
 	{
-		path: '/index.html',
-		name: '首页',
+		path: '/index',
+		name: '餐厅',
 	},
 	{
-		path: '/test.html',
+		path: '/test',
 		name: '测试页',
 	},
 ];
 
 const enLinks = [
 	{
-		path: '/index-en.html',
-		name: 'Home Page',
+		path: '/index-en',
+		name: 'Resturant',
 	},
 	{
-		path: '/test-en.html',
+		path: '/test-en',
 		name: 'Test Page',
 	},
 ];

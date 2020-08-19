@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import { connect } from 'dva';
-import { useIntl } from 'umi';
 import styles from './index.less';
 
-const Hello = () => {
-	const intl = useIntl();
-	return (
-		<h2 className={styles.title}>
-			{intl.formatMessage(
-				{
-					id: 'name',
-					defaultMessage: '你好，旅行者',
-				},
-				{
-					name: '旅行者',
-				},
-			)}
-		</h2>
-	);
-};
 @connect(({ global }) => ({ global }))
 class HomePage extends Component {
 	// componentDidMount() {
@@ -46,8 +29,8 @@ class HomePage extends Component {
 		} = this.props;
 		return (
 			<div className={styles.container}>
+				{/*  */}
 				<h1 className={styles.title}>Page index</h1>
-				<Hello />
 				<div style={{ textAlign: 'center' }}>
 					{user && user.id ? (
 						<>

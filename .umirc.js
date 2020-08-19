@@ -4,10 +4,10 @@ export default defineConfig({
 	dynamicImport: {
 		loading: '@/components/Loading',
 	},
-	ssr: {},
-	exportStatic: {
-		htmlSuffix: true,
-	},
+	// ssr: {},
+	// exportStatic: {
+	// 	htmlSuffix: true,
+	// },
 	hash: true,
 	nodeModulesTransform: {
 		type: 'none',
